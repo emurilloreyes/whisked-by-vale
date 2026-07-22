@@ -997,7 +997,7 @@ export function WhiskedByValePage() {
                   color: P.pinkDark,
                 }}
               >
-                Made fresh daily
+                Made fresh
               </div>
               <div
                 style={{

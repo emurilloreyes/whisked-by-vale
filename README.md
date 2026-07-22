@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Whisked By Vale
 
-## Getting Started
+A handcrafted cookie shop landing page built with Next.js and Tailwind CSS.
 
-First, run the development server:
+## Overview
+
+This repository contains the front-end for Whisked By Vale, a small business-style website showcasing artisanal cookies and brand identity.
+
+## Available Scripts
+
+In the project directory, you can run:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Starts the development server at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Builds the application for production.
 
-## Learn More
+```bash
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+Starts the production server after building the app.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run lint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Runs ESLint to check the project for issues.
 
-## Deploy on Vercel
+## Development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Edit pages in `app/page.tsx`.
+- Update global styles in `app/globals.css`.
+- Add reusable UI components in `components/`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tech Stack
+
+- Next.js 16
+- React 19
+- Tailwind CSS 4
+- TypeScript
+- ESLint
+
+## Deployment
+
+This app can be deployed to any platform that supports Next.js. Vercel is recommended for the best developer experience.
+
+## Notes
+
+- The project uses the Next.js App Router and modern React features.
+- If you add new TypeScript files, make sure they pass `npm run lint`.
