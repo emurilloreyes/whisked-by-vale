@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, type CSSProperties } from 'react';
 import Image from "next/image";
 
-// ── Palette ──────────────────────────────────────────────────────────────────
+// Color palette
 const P = {
   pink: '#F4A5B5',
   pinkDark: '#C4667A',
@@ -20,23 +20,18 @@ const P = {
   gold: '#D4A853',
 };
 
-// ── Data ─────────────────────────────────────────────────────────────────────
+// Cookie data
 const COOKIES = [
   {
     id: 1,
     name: 'Chocolate Chip',
-    description:
-      'Golden-edged with pools of semi-sweet chocolate, crispy outside and chewy at the center. Made with brown butter and a touch of fleur de sel.',
-    image:
-      '/images/chocolatechip.png',
+    image: '/images/chocolatechip.png',
     tag: '',
     tagColor: P.pinkDeep,
   },
   {
     id: 2,
     name: 'Double Chocalate Chip',
-    description:
-      'Pillowy soft with a crinkled sugar crust rolled in cinnamon and cardamom. A warm, spiced finish that melts on your tongue.',
     image:
       'https://images.unsplash.com/photo-1608070735103-35aa01048704?w=600&h=600&fit=crop&auto=format',
     tag: '',
@@ -45,8 +40,6 @@ const COOKIES = [
   {
     id: 3,
     name: 'Snickerdoodle',
-    description:
-      'Earthy ceremonial matcha balanced by creamy white chocolate chips — a sophisticated, verdant pairing in every bite.',
     image:
       'https://images.unsplash.com/photo-1757345016219-7b3b8a1b9fba?w=600&h=600&fit=crop&auto=format',
     tag: '',
@@ -55,8 +48,6 @@ const COOKIES = [
   {
     id: 4,
     name: 'Salted Brownie',
-    description:
-      'Buttery shortbread pressed with a sweet cavity filled with house-made raspberry preserves. Delicate, jammy, and utterly charming.',
     image:
       'https://images.unsplash.com/photo-1565624546530-a1c8e57e7214?w=600&h=600&fit=crop&auto=format',
     tag: '',
@@ -65,8 +56,6 @@ const COOKIES = [
   {
     id: 5,
     name: 'Oatmeal',
-    description:
-      'Fragrant culinary lavender folded into a fine French butter base, dusted with powdered sugar. Floral, elegant, impossibly tender.',
     image:
       'https://images.unsplash.com/photo-1669837127024-668ca3314d21?w=600&h=600&fit=crop&auto=format',
     tag: '',
@@ -75,8 +64,6 @@ const COOKIES = [
   {
     id: 6,
     name: 'Lemon Blueberry',
-    description:
-      'Rich cocoa dough packed with dark chocolate chunks and a hint of espresso. Intensely fudgy, deeply satisfying.',
     image:
       'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&h=600&fit=crop&auto=format',
     tag: '',
@@ -85,18 +72,13 @@ const COOKIES = [
   {
     id: 7,
     name: 'Peanut Butter',
-    description:
-      'Chewy brown sugar cookies with swirls of cinnamon baked in — reminiscent of a warm morning pastry in every mouthful.',
-    image:
-      '/images/peanutbutter.png',
+    image: '/images/peanutbutter.png',
     tag: '',
     tagColor: '',
   },
   {
     id: 8,
     name: 'Chocolate Lava Cake',
-    description:
-      'A powdery crinkled exterior gives way to a molten caramel center, finished with hand-crushed fleur de sel. Sweet, salty, memorable.',
     image:
       'https://images.unsplash.com/photo-1576717585968-8ea8166b89b8?w=600&h=600&fit=crop&auto=format',
     tag: '',
@@ -105,32 +87,26 @@ const COOKIES = [
   {
     id: 9,
     name: 'S\'mores',
-    description:
-      'A powdery crinkled exterior gives way to a molten caramel center, finished with hand-crushed fleur de sel. Sweet, salty, memorable.',
-    image:
-      '/images/smores.png',
+    image: '/images/smores.png',
     tag: '',
     tagColor: P.pinkDark,
   },
   {
     id: 10,
     name: 'Strawberry Cheesecake',
-    description:
-      'A powdery crinkled exterior gives way to a molten caramel center, finished with hand-crushed fleur de sel. Sweet, salty, memorable.',
-    image:
-      '/images/strawberry.png',
+    image: '/images/strawberry.png',
     tag: '',
     tagColor: P.pinkDark,
   },
 ];
 
 const PRICING = [
-  { qty: 3, price: 6, label: 'Three', note: 'A sweet treat for yourself', emoji: '🍪' },
-  { qty: 6, price: 11, label: 'Half Dozen', note: 'Perfect for sharing', emoji: '🎁' },
-  { qty: 12, price: 20, label: 'One Dozen', note: 'Great for gatherings & gifts', emoji: '🎉' },
+  { qty: 3, price: 6, label: 'Three'},
+  { qty: 6, price: 11, label: 'Half Dozen'},
+  { qty: 12, price: 20, label: 'One Dozen'},
 ];
 
-// ── Hooks ─────────────────────────────────────────────────────────────────────
+// Hooks
 function useReveal(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -152,7 +128,7 @@ function useReveal(threshold = 0.12) {
   return { ref, visible };
 }
 
-// ── Section Header ────────────────────────────────────────────────────────────
+// Headers
 function SectionHeader({
   title,
   subtitle,
@@ -227,7 +203,7 @@ function SectionHeader({
   );
 }
 
-// ── Cookie Card ───────────────────────────────────────────────────────────────
+// Cookie cards
 function CookieCard({ cookie, index }: { cookie: (typeof COOKIES)[0]; index: number }) {
   const [hovered, setHovered] = useState(false);
   const { ref, visible } = useReveal();
@@ -276,40 +252,6 @@ function CookieCard({ cookie, index }: { cookie: (typeof COOKIES)[0]; index: num
               transition: 'transform 0.65s ease',
             }}
           />
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background:
-                'linear-gradient(to top, rgba(40,12,12,0.88) 0%, rgba(40,12,12,0.25) 55%, transparent 100%)',
-              opacity: hovered ? 1 : 0,
-              transition: 'opacity 0.4s ease',
-            }}
-          />
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              padding: '20px 18px',
-              transform: hovered ? 'none' : 'translateY(12px)',
-              opacity: hovered ? 1 : 0,
-              transition: 'transform 0.4s ease, opacity 0.4s ease',
-            }}
-          >
-            <p
-              style={{
-                color: '#fff',
-                fontSize: 13,
-                lineHeight: 1.65,
-                fontFamily: "'DM Sans', sans-serif",
-                margin: 0,
-              }}
-            >
-              {cookie.description}
-            </p>
-          </div>
           {cookie.tag && (
             <div style={{ position: 'absolute', top: 12, left: 12 }}>
               <span
@@ -349,34 +291,18 @@ function CookieCard({ cookie, index }: { cookie: (typeof COOKIES)[0]; index: num
           >
             {cookie.name}
           </h3>
-          <p
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 12,
-              color: P.pinkDark,
-              margin: '4px 0 0',
-              opacity: hovered ? 1 : 1,
-              transition: 'opacity 0.3s ease',
-            }}
-          >
-            Hover to learn more 
-          </p>
         </div>
       </div>
     </div>
   );
 }
 
-// ── Pricing Card ──────────────────────────────────────────────────────────────
+// Pricing cards
 function PricingCard({
   tier,
-  selected,
-  onSelect,
   delay,
 }: {
   tier: (typeof PRICING)[0];
-  selected: boolean;
-  onSelect: () => void;
   delay: number;
 }) {
   const [hovered, setHovered] = useState(false);
@@ -393,50 +319,24 @@ function PricingCard({
       }}
     >
       <div
-        onClick={onSelect}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style={{
           borderRadius: 24,
           padding: '36px 24px 32px',
           textAlign: 'center' as const,
-          cursor: 'pointer',
-          background: selected
+          background: hovered
             ? `linear-gradient(145deg, ${P.pink}, ${P.pinkDark})`
-            : hovered
-              ? P.pinkLight
-              : P.cream,
-          boxShadow: selected
+            : P.cream,
+          boxShadow: hovered
             ? '0 20px 56px rgba(196,102,122,0.45)'
-            : hovered
-              ? '0 12px 36px rgba(196,102,122,0.18)'
-              : '0 4px 18px rgba(196,102,122,0.1)',
-          border: `2px solid ${selected ? 'transparent' : hovered ? P.pinkMid : 'transparent'}`,
-          transform: selected ? 'scale(1.04)' : hovered ? 'translateY(-4px)' : 'none',
+            : '0 4px 18px rgba(196,102,122,0.1)',
+          border: '2px solid transparent',
+          transform: hovered ? 'scale(1.04)' : 'none',
           transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
           position: 'relative' as const,
         }}
       >
-        {selected && (
-          <div
-            style={{
-              position: 'absolute',
-              top: -10,
-              right: -10,
-              width: 28,
-              height: 28,
-              borderRadius: '50%',
-              background: '#fff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 14,
-              boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-            }}
-          >
-            ✓
-          </div>
-        )}
         <div style={{ fontSize: 32, marginBottom: 12 }}>{tier.emoji}</div>
         <div
           style={{
@@ -444,7 +344,7 @@ function PricingCard({
             fontSize: 11,
             letterSpacing: '0.18em',
             textTransform: 'uppercase' as const,
-            color: selected ? 'rgba(255,255,255,0.75)' : P.brownLight,
+            color: hovered ? 'rgba(255,255,255,0.75)' : P.brownLight,
             marginBottom: 6,
             fontWeight: 500,
           }}
@@ -456,7 +356,7 @@ function PricingCard({
             fontFamily: "'Playfair Display', serif",
             fontSize: 20,
             fontWeight: 700,
-            color: selected ? '#fff' : P.brown,
+            color: hovered ? '#fff' : P.brown,
             marginBottom: 4,
           }}
         >
@@ -467,7 +367,7 @@ function PricingCard({
             fontFamily: "'Dancing Script', cursive",
             fontSize: 52,
             fontWeight: 700,
-            color: selected ? '#fff' : P.pinkDark,
+            color: hovered ? '#fff' : P.pinkDark,
             lineHeight: 1,
             margin: '8px 0',
           }}
@@ -478,7 +378,7 @@ function PricingCard({
           style={{
             fontFamily: "'DM Sans', sans-serif",
             fontSize: 12,
-            color: selected ? 'rgba(255,255,255,0.7)' : P.brownLight,
+            color: hovered ? 'rgba(255,255,255,0.7)' : P.brownLight,
             marginBottom: 12,
           }}
         >
@@ -488,26 +388,16 @@ function PricingCard({
           style={{
             width: 40,
             height: 1,
-            background: selected ? 'rgba(255,255,255,0.35)' : P.pinkMid,
+            background: hovered ? 'rgba(255,255,255,0.35)' : P.pinkMid,
             margin: '0 auto 12px',
           }}
         />
-        <div
-          style={{
-            fontFamily: "'Playfair Display', serif",
-            fontStyle: 'italic',
-            fontSize: 13,
-            color: selected ? 'rgba(255,255,255,0.8)' : P.taupe,
-          }}
-        >
-          {tier.note}
-        </div>
       </div>
     </div>
   );
 }
 
-// ── Nav Link ──────────────────────────────────────────────────────────────────
+// Nav links
 function NavLink({
   href,
   children,
@@ -540,11 +430,10 @@ function NavLink({
   );
 }
 
-// ── Main App ──────────────────────────────────────────────────────────────────
+// Main app
 export function WhiskedByValePage() {
   const [scrolled, setScrolled] = useState(false);
   const [heroParallax, setHeroParallax] = useState(0);
-  const [selectedPricing, setSelectedPricing] = useState<number | null>(null);
   const [orderBtnHovered, setOrderBtnHovered] = useState(false);
   const [ctaBtnHovered, setCtaBtnHovered] = useState(false);
   const [menuBtnHovered, setMenuBtnHovered] = useState(false);
@@ -723,19 +612,6 @@ export function WhiskedByValePage() {
             paddingTop: 92,
           }}
         >
-          <p
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 12,
-              letterSpacing: '0.24em',
-              color: 'rgba(255,255,255,0.9)',
-              marginBottom: 16,
-              textTransform: 'uppercase',
-              animation: 'fadeInUp 0.9s 0.1s ease both',
-            }}
-          >
-            ✦ &nbsp;Handcrafted with love &nbsp;✦
-          </p>
           <h1
             style={{
               fontFamily: "'Dancing Script', cursive",
@@ -743,27 +619,13 @@ export function WhiskedByValePage() {
               fontWeight: 700,
               color: '#fff',
               lineHeight: 1,
-              margin: '0 0 12px',
+              margin: '0 0 40px',
               textShadow: '0 3px 24px rgba(61,32,32,0.28)',
               animation: 'fadeInUp 0.9s 0.2s ease both',
             }}
           >
             WhiskedByVale
           </h1>
-          <p
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontStyle: 'italic',
-              fontSize: 'clamp(16px, 2.2vw, 22px)',
-              color: 'rgba(255,255,255,0.95)',
-              marginBottom: 44,
-              maxWidth: 500,
-              lineHeight: 1.7,
-              animation: 'fadeInUp 0.9s 0.35s ease both',
-            }}
-          >
-            Small-batch cookies baked fresh to order, made with the finest ingredients and a whole lot of heart.
-          </p>
           <div
             style={{
               display: 'flex',
@@ -868,168 +730,9 @@ export function WhiskedByValePage() {
         </div>
       </section>
 
-      <section id="about" style={{ padding: '96px 24px', maxWidth: 1100, margin: '0 auto' }}>
-        <div
-          ref={aboutReveal.ref}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: 64,
-            alignItems: 'center',
-            opacity: aboutReveal.visible ? 1 : 0,
-            transform: aboutReveal.visible ? 'none' : 'translateY(32px)',
-            transition: 'opacity 0.8s ease, transform 0.8s ease',
-          }}
-        >
-          <div>
-            <p
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: 11,
-                letterSpacing: '0.22em',
-                textTransform: 'uppercase',
-                color: P.pinkDark,
-                marginBottom: 14,
-                fontWeight: 500,
-              }}
-            >
-              ✦ Our Story
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: 'clamp(28px, 4vw, 42px)',
-                fontWeight: 700,
-                color: P.brown,
-                margin: '0 0 20px',
-                lineHeight: 1.2,
-              }}
-            >
-              Baked with patience,<br />
-              <em>served with joy.</em>
-            </h2>
-            <p
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: 16,
-                lineHeight: 1.8,
-                color: P.brownMid,
-                marginBottom: 16,
-              }}
-            >
-              Hi, I&apos;m Vale — home baker, cookie obsessive, and firm believer that the right cookie can turn any day around. Every batch is mixed by hand, baked to order, and shipped within 48 hours so you always get them at their freshest.
-            </p>
-            <p
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: 16,
-                lineHeight: 1.8,
-                color: P.brownMid,
-                marginBottom: 32,
-              }}
-            >
-              No preservatives, no shortcuts — just real butter, quality chocolate, and recipes refined over years of weekend baking. Each cookie is a little love letter.
-            </p>
-            <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap' }}>
-              {[
-                { n: '200+', label: 'Happy customers' },
-                { n: '8', label: 'Cookie flavors' },
-                { n: '48h', label: 'Baked to order' },
-              ].map((s) => (
-                <div key={s.label}>
-                  <div
-                    style={{
-                      fontFamily: "'Dancing Script', cursive",
-                      fontSize: 36,
-                      fontWeight: 700,
-                      color: P.pinkDark,
-                      lineHeight: 1,
-                    }}
-                  >
-                    {s.n}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: 12,
-                      color: P.brownLight,
-                      marginTop: 4,
-                    }}
-                  >
-                    {s.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div style={{ position: 'relative' }}>
-            <div
-              style={{
-                borderRadius: 32,
-                overflow: 'hidden',
-                aspectRatio: '4/5',
-                background: P.pinkLight,
-              }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1598839950984-034f6dc7b495?w=600&h=750&fit=crop&auto=format"
-                alt="Freshly baked cookies on a white surface"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-              />
-            </div>
-            <div
-              style={{
-                position: 'absolute',
-                bottom: 28,
-                left: -24,
-                background: P.cream,
-                borderRadius: 20,
-                padding: '14px 20px',
-                boxShadow: '0 8px 32px rgba(196,102,122,0.2)',
-                animation: 'float 3.5s ease-in-out infinite',
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: "'Dancing Script', cursive",
-                  fontSize: 18,
-                  fontWeight: 700,
-                  color: P.pinkDark,
-                }}
-              >
-                Made fresh
-              </div>
-              <div
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: 12,
-                  color: P.brownLight,
-                  marginTop: 2,
-                }}
-              >
-                No shelf life, all love
-              </div>
-            </div>
-            <div
-              style={{
-                position: 'absolute',
-                top: -16,
-                right: -16,
-                width: 80,
-                height: 80,
-                borderRadius: '50%',
-                background: `linear-gradient(135deg, ${P.pinkMid}, ${P.pink})`,
-                opacity: 0.5,
-                zIndex: -1,
-              }}
-            />
-          </div>
-        </div>
-      </section>
-
       <section id="menu" style={{ padding: '80px 24px 96px', background: P.pinkLight }}>
         <div style={{ maxWidth: 1240, margin: '0 auto' }}>
-          <SectionHeader title="Our Cookie Menu" subtitle="Every cookie baked to order — never sitting on a shelf." />
+          <SectionHeader title="Cookie Menu" subtitle="Cookies are baked to order" />
           <div
             style={{
               display: 'grid',
@@ -1041,24 +744,12 @@ export function WhiskedByValePage() {
               <CookieCard key={c.id} cookie={c} index={i} />
             ))}
           </div>
-          <p
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontStyle: 'italic',
-              fontSize: 15,
-              color: P.brownLight,
-              textAlign: 'center',
-              marginTop: 40,
-            }}
-          >
-            ✦ &nbsp; All cookies are baked to order! &nbsp;✦
-          </p>
         </div>
       </section>
 
       <section id="pricing" style={{ padding: '88px 24px 96px', background: P.cream }}>
         <div style={{ maxWidth: 1000, margin: '0 auto' }}>
-          <SectionHeader title="Pricing" subtitle="For more specific batch sizes, please DM!" />
+          <SectionHeader title="Pricing" subtitle="For more specific batch sizes, please DM" />
           <div
             style={{
               display: 'grid',
@@ -1067,65 +758,10 @@ export function WhiskedByValePage() {
             }}
           >
             {PRICING.map((t, i) => (
-              <PricingCard
-                key={t.qty}
-                tier={t}
-                selected={selectedPricing === t.qty}
-                onSelect={() => setSelectedPricing(t.qty === selectedPricing ? null : t.qty)}
-                delay={i * 0.1}
-              />
+              <PricingCard key={t.qty} tier={t} delay={i * 0.1} />
             ))}
           </div>
-
-          <div
-            style={{
-              marginTop: 40,
-              textAlign: 'center',
-              minHeight: 80,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'opacity 0.4s ease',
-              opacity: selectedPricing ? 1 : 0,
-              pointerEvents: selectedPricing ? 'auto' : 'none',
-            }}
-          >
-            {selectedPricing && (
-              <>
-                <p
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: 18,
-                    color: P.brownMid,
-                    marginBottom: 20,
-                    fontStyle: 'italic',
-                  }}
-                >
-                  {selectedPricing} cookies for{' '}
-                  <strong style={{ color: P.pinkDark }}>${PRICING.find((p) => p.qty === selectedPricing)?.price}</strong>{' '}
-                  — sounds delicious!
-                </p>
-                <a
-                  href="#order"
-                  style={{
-                    padding: '13px 40px',
-                    borderRadius: 50,
-                    background: `linear-gradient(135deg, ${P.pink}, ${P.pinkDark})`,
-                    color: '#fff',
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontWeight: 600,
-                    fontSize: 15,
-                    textDecoration: 'none',
-                    boxShadow: '0 8px 32px rgba(196,102,122,0.38)',
-                    transition: 'transform 0.2s ease',
-                  }}
-                >
-                  Place My Order →
-                </a>
-              </>
-            )}
-          </div>
+          
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
@@ -1208,7 +844,7 @@ export function WhiskedByValePage() {
               margin: '0 auto 36px',
             }}
           >
-            Reach out via email and let me know your chosen flavors, quantity, and any special requests. I&apos;ll confirm your order within 24 hours.
+            Reach out via Instagram and let me know your chosen flavors, quantity, and any special requests. I&apos;ll confirm your order within 24 hours.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a
@@ -1256,16 +892,6 @@ export function WhiskedByValePage() {
               Browse Menu Again
             </a>
           </div>
-          <p
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 13,
-              color: 'rgba(255,255,255,0.6)',
-              marginTop: 24,
-            }}
-          >
-            Minimum order: 6 cookies · Delivery within 3–5 business days
-          </p>
         </div>
       </section>
 

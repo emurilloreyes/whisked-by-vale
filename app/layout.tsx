@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "WhiskedByVale | Handcrafted Cookies",
+  title: "WhiskedByVale | Cookie Menu",
 };
 
 export default function RootLayout({
