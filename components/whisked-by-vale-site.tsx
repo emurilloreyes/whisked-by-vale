@@ -847,7 +847,7 @@ export function WhiskedByValePage() {
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a
-              href="mailto:hello@whiskedbyvale.com"
+              target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/whiskedbyvale/"
               onMouseEnter={() => setCtaBtnHovered(true)}
               onMouseLeave={() => setCtaBtnHovered(false)}
               style={{
@@ -867,7 +867,7 @@ export function WhiskedByValePage() {
                 letterSpacing: '0.01em',
               }}
             >
-              hello@whiskedbyvale.com
+              Order Now
             </a>
             <a
               href="#menu"
@@ -924,16 +924,6 @@ export function WhiskedByValePage() {
             >
               WhiskedByVale
             </div>
-            <p
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontStyle: 'italic',
-                fontSize: 14,
-                color: 'rgba(255,255,255,0.5)',
-              }}
-            >
-              Small-batch, big heart.
-            </p>
           </div>
           <div
             style={{
@@ -944,10 +934,14 @@ export function WhiskedByValePage() {
               flexWrap: 'wrap',
             }}
           >
-            {['Menu', 'Pricing', 'About', 'Order'].map((l) => (
+            {['Menu', 'Pricing', 'Order'].map((l) => (
               <a
                 key={l}
-                href={`#${l.toLowerCase()}`}
+                href={ l === 'Order' ? 'https://www.instagram.com/whiskedbyvale/' : `#${l.toLowerCase()}`
+                }
+                {...(l === 'Order'
+                  ? { target: '_blank', rel: 'noopener noreferrer' }
+                  : {})}
                 style={{
                   color: 'rgba(255,255,255,0.6)',
                   textDecoration: 'none',
@@ -961,7 +955,7 @@ export function WhiskedByValePage() {
             ))}
           </div>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12 }}>
-            © 2025 WhiskedByVale · Made with 🍪
+            © 2026 WhiskedByVale · 🍪
           </p>
         </div>
       </footer>
