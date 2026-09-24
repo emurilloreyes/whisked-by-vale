@@ -481,7 +481,15 @@ export function WhiskedByValePage() {
   };
 
   return (
-    <div style={{ fontFamily: "'Dancing Script', cursive", background: P.cream, color: P.brown }}>
+    <div
+      style={{
+        fontFamily: "'Dancing Script', cursive",
+        background: P.cream,
+        color: P.brown,
+        overflowX: 'hidden',
+        maxWidth: '100%',
+      }}
+    >
       <nav style={navBase}>
         <a
           href="#home"
@@ -494,6 +502,9 @@ export function WhiskedByValePage() {
             textShadow: scrolled ? 'none' : '0 1px 8px rgba(61,32,32,0.25)',
             transition: 'color 0.4s ease',
             lineHeight: 1,
+            whiteSpace: 'nowrap',
+            flexShrink: 1,
+            minWidth: 0,
           }}
         >
           Whisked-By-Vale
@@ -618,18 +629,21 @@ export function WhiskedByValePage() {
             alignItems: 'center',
             justifyContent: 'center',
             textAlign: 'center',
-            padding: '0 24px',
+            padding: '0 20px',
             paddingTop: 92,
+            maxWidth: '100%',
+            boxSizing: 'border-box',
           }}
         >
           <h1
             style={{
               fontFamily: "'Dancing Script', cursive",
-              fontSize: 'clamp(68px, 11vw, 130px)',
+              fontSize: 'clamp(32px, 10.5vw, 130px)',
               fontWeight: 700,
               color: P.pinkLight,
-              lineHeight: 1,
-              margin: '0 0 40px',
+              lineHeight: 1.05,
+              margin: '0 0 50px',
+              maxWidth: '100%',
               textShadow: '0 3px 24px rgba(61,32,32,0.28)',
               animation: 'fadeInUp 0.9s 0.2s ease both',
             }}
@@ -746,7 +760,7 @@ export function WhiskedByValePage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(256px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(min(256px, 100%), 1fr))',
               gap: 24,
             }}
           >
@@ -763,7 +777,7 @@ export function WhiskedByValePage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(min(250px, 100%), 1fr))',
               gap: 20,
             }}
           >
