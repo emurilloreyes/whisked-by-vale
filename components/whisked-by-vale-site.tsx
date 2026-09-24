@@ -452,6 +452,16 @@ export function WhiskedByValePage() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 760px)');
+    const onChange = () => {
+      if (!mq.matches) setMobileMenuOpen(false);
+    };
+    onChange();
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
   const navBase: CSSProperties = {
     position: 'fixed',
     top: 0,
@@ -459,7 +469,7 @@ export function WhiskedByValePage() {
     right: 0,
     zIndex: 100,
     padding: '0 24px',
-    minHeight: 68,
+    height: 68,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -468,7 +478,6 @@ export function WhiskedByValePage() {
     backdropFilter: scrolled ? 'blur(16px)' : 'none',
     boxShadow: scrolled ? '0 2px 24px rgba(196,102,122,0.1)' : 'none',
     transition: 'background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease',
-    flexWrap: 'wrap',
   };
 
   return (
@@ -497,9 +506,6 @@ export function WhiskedByValePage() {
             </NavLink>
             <NavLink href="#pricing" scrolled={scrolled}>
               Pricing
-            </NavLink>
-            <NavLink href="#about" scrolled={scrolled}>
-              About
             </NavLink>
             <a
               href="#order"
@@ -546,7 +552,6 @@ export function WhiskedByValePage() {
               height: 42,
               fontSize: 20,
               cursor: 'pointer',
-              display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               backdropFilter: 'blur(8px)',
@@ -557,19 +562,25 @@ export function WhiskedByValePage() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="nav-links-mobile" style={{ width: '100%', paddingTop: 12, marginTop: 4 }}>
-            <a href="#menu" onClick={() => setMobileMenuOpen(false)} style={{ color: scrolled ? P.brown : '#fff' }}>
-              Menu
-            </a>
-            <a href="#pricing" onClick={() => setMobileMenuOpen(false)} style={{ color: scrolled ? P.brown : '#fff' }}>
-              Pricing
-            </a>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} style={{ color: scrolled ? P.brown : '#fff' }}>
-              About
-            </a>
-            <a href="#order" onClick={() => setMobileMenuOpen(false)} style={{ color: scrolled ? P.brown : '#fff' }}>
-              Order Now
-            </a>
+          <div className="nav-links-mobile">
+            {[
+              { href: '#menu', label: 'Menu', delay: '0.08s' },
+              { href: '#pricing', label: 'Pricing', delay: '0.16s' },
+              { href: '#order', label: 'Order Now', delay: '0.24s' },
+            ].map(({ href, label, delay }) => (
+              <a
+                key={href}
+                href={href}
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  color: P.brown,
+                  fontFamily: "'DM Sans', sans-serif",
+                  animation: `navLinkRise 0.4s ${delay} ease both`,
+                }}
+              >
+                {label}
+              </a>
+            ))}
           </div>
         )}
       </nav>
