@@ -617,7 +617,7 @@ export function WhiskedByValePage() {
               fontFamily: "'Dancing Script', cursive",
               fontSize: 'clamp(68px, 11vw, 130px)',
               fontWeight: 700,
-              color: '#fff',
+              color: P.pinkLight,
               lineHeight: 1,
               margin: '0 0 40px',
               textShadow: '0 3px 24px rgba(61,32,32,0.28)',
@@ -844,7 +844,7 @@ export function WhiskedByValePage() {
               margin: '0 auto 36px',
             }}
           >
-            Reach out via Instagram and let me know your chosen flavors, quantity, and any special requests. I&apos;ll confirm your order within 24 hours.
+            Reach out via Instagram and let me know your chosen flavors, quantity, and any special requests.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a
