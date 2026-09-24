@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef, type CSSProperties } from 'react';
-import Image from "next/image";
 
 // Color palette
 const P = {
@@ -12,12 +11,7 @@ const P = {
   pinkMid: '#FAD5DE',
   cream: '#FFF7F5',
   brown: '#3D2020',
-  brownMid: '#7A4A4A',
   brownLight: '#A07070',
-  sage: '#A8C4A0',
-  sageDark: '#6E9868',
-  taupe: '#C4A896',
-  gold: '#D4A853',
 };
 
 // Cookie data
@@ -26,77 +20,56 @@ const COOKIES = [
     id: 1,
     name: 'Chocolate Chip',
     image: '/images/chocolatechip.png',
-    tag: '',
-    tagColor: P.pinkDeep,
   },
   {
     id: 2,
     name: 'Double Chocalate Chip',
-    image:
-      'https://images.unsplash.com/photo-1608070735103-35aa01048704?w=600&h=600&fit=crop&auto=format',
-    tag: '',
-    tagColor: P.gold,
+    image: '/images/doublechocolatechip.png',
   },
   {
     id: 3,
     name: 'Snickerdoodle',
-    image:
-      'https://images.unsplash.com/photo-1757345016219-7b3b8a1b9fba?w=600&h=600&fit=crop&auto=format',
-    tag: '',
-    tagColor: P.sageDark,
+    image: '/images/snickerdoodle.png',
   },
   {
     id: 4,
     name: 'Salted Brownie',
-    image:
-      'https://images.unsplash.com/photo-1565624546530-a1c8e57e7214?w=600&h=600&fit=crop&auto=format',
-    tag: '',
-    tagColor: '',
+    image: '/images/saltedbrownie.png',
   },
   {
     id: 5,
     name: 'Oatmeal',
-    image:
-      'https://images.unsplash.com/photo-1669837127024-668ca3314d21?w=600&h=600&fit=crop&auto=format',
-    tag: '',
-    tagColor: '#7B68C8',
+    image: '/images/oatmeal.jpg',
   },
   {
     id: 6,
-    name: 'Lemon Blueberry',
-    image:
-      'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&h=600&fit=crop&auto=format',
-    tag: '',
-    tagColor: '',
+    name: 'Oatmeal Blueberry',
+    image: '/images/oatmealblueberry.jpg',
   },
   {
     id: 7,
-    name: 'Peanut Butter',
-    image: '/images/peanutbutter.png',
-    tag: '',
-    tagColor: '',
+    name: 'Lemon Blueberry',
+    image: '/images/lemonblueberry.jpg',
   },
   {
     id: 8,
-    name: 'Chocolate Lava Cake',
-    image:
-      'https://images.unsplash.com/photo-1576717585968-8ea8166b89b8?w=600&h=600&fit=crop&auto=format',
-    tag: '',
-    tagColor: P.pinkDark,
+    name: 'Peanut Butter',
+    image: '/images/peanutbutter.png',
   },
   {
     id: 9,
-    name: 'S\'mores',
-    image: '/images/smores.png',
-    tag: '',
-    tagColor: P.pinkDark,
+    name: 'Chocolate Lava Cake',
+    image: '/images/chocolatelava.png',
   },
   {
     id: 10,
+    name: 'S\'mores',
+    image: '/images/smores.png',
+  },
+  {
+    id: 11,
     name: 'Strawberry Cheesecake',
     image: '/images/strawberry.png',
-    tag: '',
-    tagColor: P.pinkDark,
   },
 ];
 
@@ -234,7 +207,6 @@ function CookieCard({ cookie, index }: { cookie: (typeof COOKIES)[0]; index: num
       >
         <div
           style={{
-            position: 'relative',
             aspectRatio: '1',
             overflow: 'hidden',
             background: P.pinkLight,
@@ -252,24 +224,6 @@ function CookieCard({ cookie, index }: { cookie: (typeof COOKIES)[0]; index: num
               transition: 'transform 0.65s ease',
             }}
           />
-          {cookie.tag && (
-            <div style={{ position: 'absolute', top: 12, left: 12 }}>
-              <span
-                style={{
-                  padding: '4px 12px',
-                  borderRadius: 20,
-                  fontSize: 11,
-                  fontWeight: 600,
-                  background: 'rgba(255,247,245,0.96)',
-                  color: cookie.tagColor,
-                  fontFamily: "'DM Sans', sans-serif",
-                  letterSpacing: '0.04em',
-                }}
-              >
-                {cookie.tag}
-              </span>
-            </div>
-          )}
         </div>
         <div
           style={{
@@ -438,8 +392,6 @@ export function WhiskedByValePage() {
   const [menuBtnHovered, setMenuBtnHovered] = useState(false);
   const [heroBtnHovered, setHeroBtnHovered] = useState<'menu' | 'pricing' | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const heroRef = useRef<HTMLElement>(null);
-  const aboutReveal = useReveal();
   const orderReveal = useReveal();
 
   useEffect(() => {
@@ -598,15 +550,13 @@ export function WhiskedByValePage() {
 
       <section
         id="home"
-        ref={heroRef}
         style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}
       >
         <div
           style={{
             position: 'absolute',
-            inset: '-10%',
-            backgroundImage:
-              'url(https://images.unsplash.com/photo-1634188023615-7e08901193b6?w=1600&h=1100&fit=crop&auto=forma)',
+            inset: '0%',
+            backgroundImage: 'url(/images/singlesmores.png)',
             backgroundSize: 'cover',
             backgroundPosition: `center calc(50% + ${heroParallax}px)`,
             willChange: 'background-position',
@@ -716,7 +666,7 @@ export function WhiskedByValePage() {
             flexDirection: 'column',
             alignItems: 'center',
             gap: 8,
-            color: 'rgba(255,255,255,0.65)',
+            color: P.brown,
             animation: 'fadeInUp 1s 1s ease both',
           }}
         >
@@ -735,7 +685,7 @@ export function WhiskedByValePage() {
               width: 22,
               height: 36,
               borderRadius: 11,
-              border: '2px solid rgba(255,255,255,0.45)',
+              border: '2px solid' + P.brown,
               display: 'flex',
               justifyContent: 'center',
               paddingTop: 5,
@@ -746,7 +696,7 @@ export function WhiskedByValePage() {
                 width: 4,
                 height: 8,
                 borderRadius: 2,
-                background: 'rgba(255,255,255,0.8)',
+                background: P.brown,
                 animation: 'scrollDot 1.6s ease-in-out infinite',
               }}
             />
