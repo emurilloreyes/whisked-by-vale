@@ -337,7 +337,6 @@ function PricingCard({
           position: 'relative' as const,
         }}
       >
-        <div style={{ fontSize: 32, marginBottom: 12 }}>{tier.emoji}</div>
         <div
           style={{
             fontFamily: "'DM Sans', sans-serif",
