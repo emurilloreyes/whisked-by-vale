@@ -14,6 +14,10 @@ const P = {
   brownLight: '#A07070',
 };
 
+// Dancing Script can fail on Windows Chrome; Pacifico + system scripts are the fallback
+const FONT_LOGO =
+  "'Dancing Script', 'Pacifico', 'Segoe Script', 'Apple Chancery', cursive";
+
 // Cookie data
 const COOKIES = [
   {
@@ -317,7 +321,7 @@ function PricingCard({
         </div>
         <div
           style={{
-            fontFamily: "'Dancing Script', cursive",
+            fontFamily: FONT_LOGO,
             fontSize: 52,
             fontWeight: 700,
             color: hovered ? '#fff' : P.pinkDark,
@@ -435,7 +439,7 @@ export function WhiskedByValePage() {
   return (
     <div
       style={{
-        fontFamily: "'Dancing Script', cursive",
+        fontFamily: FONT_LOGO,
         background: P.cream,
         color: P.brown,
         overflowX: 'hidden',
@@ -446,7 +450,7 @@ export function WhiskedByValePage() {
         <a
           href="#home"
           style={{
-            fontFamily: "'Dancing Script', cursive",
+            fontFamily: FONT_LOGO,
             fontSize: 26,
             fontWeight: 700,
             color: scrolled ? P.brown : '#fff',
@@ -555,7 +559,7 @@ export function WhiskedByValePage() {
         <div
           style={{
             position: 'absolute',
-            inset: '0%',
+            inset: '-1%',
             backgroundImage: 'url(/images/singlesmores.png)',
             backgroundSize: 'cover',
             backgroundPosition: `center calc(50% + ${heroParallax}px)`,
@@ -587,7 +591,7 @@ export function WhiskedByValePage() {
         >
           <h1
             style={{
-              fontFamily: "'Dancing Script', cursive",
+              fontFamily: FONT_LOGO,
               fontSize: 'clamp(32px, 10.5vw, 130px)',
               fontWeight: 700,
               color: P.pinkLight,
@@ -890,7 +894,7 @@ export function WhiskedByValePage() {
           <div>
             <div
               style={{
-                fontFamily: "'Dancing Script', cursive",
+                fontFamily: FONT_LOGO,
                 fontSize: 28,
                 fontWeight: 700,
                 color: '#fff',
