@@ -37,6 +37,26 @@ body {
   display: none;
 }
 
+.cookie-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .cookie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (min-width: 960px) {
+  .cookie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+  }
+}
+
 @media (max-width: 760px) {
   .nav-links-desktop {
     display: none;

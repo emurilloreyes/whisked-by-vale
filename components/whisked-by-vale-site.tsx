@@ -198,7 +198,7 @@ function CookieCard({ cookie, index }: { cookie: (typeof COOKIES)[0]; index: num
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style={{
-          borderRadius: 24,
+          borderRadius: 'clamp(12px, 3vw, 24px)',
           overflow: 'hidden',
           cursor: 'pointer',
           background: P.cream,
@@ -231,7 +231,7 @@ function CookieCard({ cookie, index }: { cookie: (typeof COOKIES)[0]; index: num
         </div>
         <div
           style={{
-            padding: '14px 18px 16px',
+            padding: 'clamp(8px, 2vw, 14px) clamp(8px, 2.5vw, 18px) clamp(10px, 2vw, 16px)',
             background: hovered
               ? `linear-gradient(135deg, ${P.pinkLight}, ${P.cream})`
               : P.cream,
@@ -241,10 +241,11 @@ function CookieCard({ cookie, index }: { cookie: (typeof COOKIES)[0]; index: num
           <h3
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: 16,
+              fontSize: 'clamp(11px, 2.8vw, 16px)',
               fontWeight: 600,
               color: P.brown,
               margin: 0,
+              lineHeight: 1.25,
             }}
           >
             {cookie.name}
@@ -390,22 +391,42 @@ function NavLink({
 // Main app
 export function WhiskedByValePage() {
   const [scrolled, setScrolled] = useState(false);
-  const [heroParallax, setHeroParallax] = useState(0);
   const [orderBtnHovered, setOrderBtnHovered] = useState(false);
   const [ctaBtnHovered, setCtaBtnHovered] = useState(false);
   const [menuBtnHovered, setMenuBtnHovered] = useState(false);
   const [heroBtnHovered, setHeroBtnHovered] = useState<'menu' | 'pricing' | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const orderReveal = useReveal();
+  const heroParallaxRef = useRef<HTMLDivElement>(null);
+  const scrolledRef = useRef(false);
+  const parallaxRafRef = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => {
+    const updateParallax = () => {
+      parallaxRafRef.current = 0;
       const y = window.scrollY;
-      setScrolled(y > 60);
-      setHeroParallax(y * 0.38);
+      const el = heroParallaxRef.current;
+      if (el) {
+        el.style.transform = `translate3d(0, ${y * 0.38}px, 0)`;
+      }
+      const nextScrolled = y > 60;
+      if (nextScrolled !== scrolledRef.current) {
+        scrolledRef.current = nextScrolled;
+        setScrolled(nextScrolled);
+      }
     };
+
+    const onScroll = () => {
+      if (parallaxRafRef.current) return;
+      parallaxRafRef.current = requestAnimationFrame(updateParallax);
+    };
+
+    updateParallax();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (parallaxRafRef.current) cancelAnimationFrame(parallaxRafRef.current);
+    };
   }, []);
 
   useEffect(() => {
@@ -557,13 +578,19 @@ export function WhiskedByValePage() {
         style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}
       >
         <div
+          ref={heroParallaxRef}
           style={{
             position: 'absolute',
-            inset: '-1%',
-            backgroundImage: 'url(/images/singlesmores.png)',
+            top: '-18%',
+            left: 0,
+            right: 0,
+            height: '136%',
+            backgroundImage: 'url(/images/singlesmores.jpg)',
             backgroundSize: 'cover',
-            backgroundPosition: `center calc(50% + ${heroParallax}px)`,
-            willChange: 'background-position',
+            backgroundPosition: 'center center',
+            willChange: 'transform',
+            transform: 'translate3d(0, 0, 0)',
+            backfaceVisibility: 'hidden',
           }}
         />
         <div
@@ -708,16 +735,13 @@ export function WhiskedByValePage() {
         </div>
       </section>
 
-      <section id="menu" style={{ padding: '80px 24px 96px', background: P.pinkLight }}>
+      <section
+        id="menu"
+        style={{ padding: '80px clamp(16px, 4vw, 24px) 96px', background: P.pinkLight }}
+      >
         <div style={{ maxWidth: 1240, margin: '0 auto' }}>
           <SectionHeader title="Cookie Menu" subtitle="Cookies are baked to order" />
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(min(256px, 100%), 1fr))',
-              gap: 24,
-            }}
-          >
+          <div className="cookie-grid">
             {COOKIES.map((c, i) => (
               <CookieCard key={c.id} cookie={c} index={i} />
             ))}
