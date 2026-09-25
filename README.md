@@ -1,58 +1,52 @@
 # Whisked By Vale
 
-A handcrafted cookie shop landing page built with Next.js and Tailwind CSS.
+Landing page for **Whisked By Vale**. Showcases the cookie menu, pricing, and Instagram ordering.
 
-## Overview
+## Features
 
-This repository contains the front-end for Whisked By Vale, a small business-style website showcasing artisanal cookies and brand identity.
+- Full-bleed hero with brand-forward typography
+- Cookie menu grid (11 flavors with product photos)
+- Pricing tiers: 3 / 6 / 12 cookies
+- Order CTA linking to [Instagram](https://www.instagram.com/whiskedbyvale/)
+- Scroll-reveal animations and desktop parallax
+- Responsive layout tuned for mobile
 
-## Available Scripts
-
-In the project directory, you can run:
+## Getting Started
 
 ```bash
+npm install
 npm run dev
 ```
 
-Starts the development server at [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000).
 
-```bash
-npm run build
+| Script | Description |
+| --- | --- |
+| `npm run dev` | Start the development server |
+| `npm run build` | Build for production |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run ESLint |
+
+## Project Structure
+
+```
+app/
+  layout.tsx          # Root layout, fonts, metadata
+  page.tsx            # Home route
+  globals.css         # Global styles
+components/
+  whisked-by-vale-site.tsx   # Main page UI (hero, menu, pricing, order)
+public/
+  images/             # Cookie product photos
 ```
 
-Builds the application for production.
-
-```bash
-npm run start
-```
-
-Starts the production server after building the app.
-
-```bash
-npm run lint
-```
-
-Runs ESLint to check the project for issues.
-
-## Development
-
-- Edit pages in `app/page.tsx`.
-- Update global styles in `app/globals.css`.
-- Add reusable UI components in `components/`.
+Most of the site lives in `components/whisked-by-vale-site.tsx`. Cookie data and pricing are defined at the top of that file; product images go in `public/images/`.
 
 ## Tech Stack
 
-- Next.js 16
+- Next.js 16 (App Router)
 - React 19
-- Tailwind CSS 4
 - TypeScript
-- ESLint
+- Tailwind CSS 4
+- Google Fonts: Playfair Display, DM Sans, Dancing Script, Pacifico
 
-## Deployment
-
-This app can be deployed to any platform that supports Next.js. Vercel is recommended for the best developer experience.
-
-## Notes
-
-- The project uses the Next.js App Router and modern React features.
-- If you add new TypeScript files, make sure they pass `npm run lint`.
