@@ -616,130 +616,136 @@ export function WhiskedByValePage() {
             minHeight: '100vh',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            textAlign: 'center',
-            padding: '0 20px',
-            paddingTop: 92,
+            padding: '92px 20px 36px',
             maxWidth: '100%',
             boxSizing: 'border-box',
           }}
         >
-          <h1
-            style={{
-              fontFamily: FONT_LOGO,
-              fontSize: 'clamp(32px, 10.5vw, 130px)',
-              fontWeight: 700,
-              color: P.pinkLight,
-              lineHeight: 1.05,
-              margin: '0 0 50px',
-              maxWidth: '100%',
-              textShadow: '0 3px 24px rgba(61,32,32,0.28)',
-              animation: 'fadeInUp 0.9s 0.2s ease both',
-            }}
-          >
-            WhiskedByVale
-          </h1>
           <div
             style={{
+              flex: 1,
               display: 'flex',
-              gap: 14,
-              animation: 'fadeInUp 0.9s 0.5s ease both',
-              flexWrap: 'wrap' as const,
+              flexDirection: 'column',
+              alignItems: 'center',
               justifyContent: 'center',
+              textAlign: 'center',
             }}
           >
-            <a
-              href="#menu"
-              onMouseEnter={() => setHeroBtnHovered('menu')}
-              onMouseLeave={() => setHeroBtnHovered(null)}
+            <h1
               style={{
-                padding: '14px 40px',
-                borderRadius: 50,
-                background: heroBtnHovered === 'menu' ? P.pinkDark : P.pink,
-                color: '#fff',
-                fontFamily: "'DM Sans', sans-serif",
-                fontWeight: 600,
-                fontSize: 15,
-                textDecoration: 'none',
-                boxShadow:
-                  heroBtnHovered === 'menu'
-                    ? '0 12px 36px rgba(196,102,122,0.55)'
-                    : '0 6px 28px rgba(244,165,181,0.45)',
-                transform: heroBtnHovered === 'menu' ? 'translateY(-2px)' : 'none',
-                transition: 'all 0.25s ease',
+                fontFamily: FONT_LOGO,
+                fontSize: 'clamp(32px, 10.5vw, 130px)',
+                fontWeight: 700,
+                color: P.pinkLight,
+                lineHeight: 1.05,
+                margin: '0 0 50px',
+                maxWidth: '100%',
+                textShadow: '0 3px 24px rgba(61,32,32,0.28)',
+                animation: 'fadeInUp 0.9s 0.2s ease both',
               }}
             >
-              View Menu
-            </a>
-            <a
-              href="#pricing"
-              onMouseEnter={() => setHeroBtnHovered('pricing')}
-              onMouseLeave={() => setHeroBtnHovered(null)}
-              style={{
-                padding: '14px 40px',
-                borderRadius: 50,
-                background: heroBtnHovered === 'pricing' ? 'rgba(255,255,255,0.32)' : 'rgba(255,255,255,0.18)',
-                color: '#fff',
-                border: '2px solid rgba(255,255,255,0.55)',
-                fontFamily: "'DM Sans', sans-serif",
-                fontWeight: 600,
-                fontSize: 15,
-                textDecoration: 'none',
-                backdropFilter: 'blur(10px)',
-                transform: heroBtnHovered === 'pricing' ? 'translateY(-2px)' : 'none',
-                transition: 'all 0.25s ease',
-              }}
-            >
-              See Pricing
-            </a>
-          </div>
-        </div>
-
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 36,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 8,
-            color: P.brown,
-            animation: 'fadeInUp 1s 1s ease both',
-          }}
-        >
-          <span
-            style={{
-              fontSize: 10,
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              fontFamily: "'DM Sans', sans-serif",
-            }}
-          >
-            Scroll
-          </span>
-          <div
-            style={{
-              width: 22,
-              height: 36,
-              borderRadius: 11,
-              border: '2px solid' + P.brown,
-              display: 'flex',
-              justifyContent: 'center',
-              paddingTop: 5,
-            }}
-          >
+              WhiskedByVale
+            </h1>
             <div
               style={{
-                width: 4,
-                height: 8,
-                borderRadius: 2,
-                background: P.brown,
-                animation: 'scrollDot 1.6s ease-in-out infinite',
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: 14,
+                animation: 'fadeInUp 0.9s 0.5s ease both',
+                width: 'min(100%, 360px)',
               }}
-            />
+            >
+              <a
+                href="#menu"
+                onMouseEnter={() => setHeroBtnHovered('menu')}
+                onMouseLeave={() => setHeroBtnHovered(null)}
+                style={{
+                  padding: '14px 20px',
+                  borderRadius: 50,
+                  background: heroBtnHovered === 'menu' ? P.pinkDark : P.pink,
+                  color: '#fff',
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontWeight: 600,
+                  fontSize: 15,
+                  textDecoration: 'none',
+                  textAlign: 'center',
+                  border: '2px solid transparent',
+                  boxShadow:
+                    heroBtnHovered === 'menu'
+                      ? '0 12px 36px rgba(196,102,122,0.55)'
+                      : '0 6px 28px rgba(244,165,181,0.45)',
+                  transform: heroBtnHovered === 'menu' ? 'translateY(-2px)' : 'none',
+                  transition: 'all 0.25s ease',
+                }}
+              >
+                View Menu
+              </a>
+              <a
+                href="#pricing"
+                onMouseEnter={() => setHeroBtnHovered('pricing')}
+                onMouseLeave={() => setHeroBtnHovered(null)}
+                style={{
+                  padding: '14px 20px',
+                  borderRadius: 50,
+                  background: heroBtnHovered === 'pricing' ? 'rgba(255,255,255,0.32)' : 'rgba(255,255,255,0.18)',
+                  color: '#fff',
+                  border: '2px solid rgba(255,255,255,0.55)',
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontWeight: 600,
+                  fontSize: 15,
+                  textDecoration: 'none',
+                  textAlign: 'center',
+                  backdropFilter: 'blur(10px)',
+                  transform: heroBtnHovered === 'pricing' ? 'translateY(-2px)' : 'none',
+                  transition: 'all 0.25s ease',
+                }}
+              >
+                See Pricing
+              </a>
+            </div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 8,
+              color: P.brown,
+              animation: 'fadeInUp 1s 1s ease both',
+            }}
+          >
+            <span
+              style={{
+                fontSize: 10,
+                letterSpacing: '0.2em',
+                marginRight: '-0.2em',
+                textTransform: 'uppercase',
+                fontFamily: "'DM Sans', sans-serif",
+              }}
+            >
+              Scroll
+            </span>
+            <div
+              style={{
+                width: 22,
+                height: 36,
+                borderRadius: 11,
+                border: '2px solid' + P.brown,
+                display: 'flex',
+                justifyContent: 'center',
+                paddingTop: 5,
+              }}
+            >
+              <div
+                style={{
+                  width: 4,
+                  height: 8,
+                  borderRadius: 2,
+                  background: P.brown,
+                  animation: 'scrollDot 1.6s ease-in-out infinite',
+                }}
+              />
+            </div>
           </div>
         </div>
       </section>
