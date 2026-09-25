@@ -400,13 +400,25 @@ export function WhiskedByValePage() {
   const heroParallaxRef = useRef<HTMLDivElement>(null);
   const scrolledRef = useRef(false);
   const parallaxRafRef = useRef(0);
+  const preferParallaxRef = useRef(true);
 
   useEffect(() => {
+    const mq = window.matchMedia('(max-width: 760px)');
+    const syncParallaxPreference = () => {
+      preferParallaxRef.current = !mq.matches;
+      const el = heroParallaxRef.current;
+      if (el && !preferParallaxRef.current) {
+        el.style.transform = 'translate3d(0, 0, 0)';
+      }
+    };
+    syncParallaxPreference();
+    mq.addEventListener('change', syncParallaxPreference);
+
     const updateParallax = () => {
       parallaxRafRef.current = 0;
       const y = window.scrollY;
       const el = heroParallaxRef.current;
-      if (el) {
+      if (el && preferParallaxRef.current) {
         el.style.transform = `translate3d(0, ${y * 0.38}px, 0)`;
       }
       const nextScrolled = y > 60;
@@ -425,6 +437,7 @@ export function WhiskedByValePage() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', onScroll);
+      mq.removeEventListener('change', syncParallaxPreference);
       if (parallaxRafRef.current) cancelAnimationFrame(parallaxRafRef.current);
     };
   }, []);
@@ -579,16 +592,12 @@ export function WhiskedByValePage() {
       >
         <div
           ref={heroParallaxRef}
+          className="hero-parallax-bg"
           style={{
             position: 'absolute',
-            top: '-18%',
-            left: 0,
-            right: 0,
-            height: '136%',
             backgroundImage: 'url(/images/singlesmores.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
-            willChange: 'transform',
             transform: 'translate3d(0, 0, 0)',
             backfaceVisibility: 'hidden',
           }}

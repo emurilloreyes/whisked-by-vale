@@ -37,6 +37,21 @@ body {
   display: none;
 }
 
+.hero-parallax-bg {
+  inset: 0;
+}
+
+@media (min-width: 761px) {
+  .hero-parallax-bg {
+    top: -18%;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    height: 136%;
+    will-change: transform;
+  }
+}
+
 .cookie-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
