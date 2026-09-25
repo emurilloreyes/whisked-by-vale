@@ -386,39 +386,20 @@ function NavLink({
 // Main app
 export function WhiskedByValePage() {
   const [scrolled, setScrolled] = useState(false);
+  const [heroParallax, setHeroParallax] = useState(0);
   const [orderBtnHovered, setOrderBtnHovered] = useState(false);
   const [ctaBtnHovered, setCtaBtnHovered] = useState(false);
   const [menuBtnHovered, setMenuBtnHovered] = useState(false);
   const [heroBtnHovered, setHeroBtnHovered] = useState<'menu' | 'pricing' | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const heroBgRef = useRef<HTMLDivElement>(null);
   const orderReveal = useReveal();
 
   useEffect(() => {
-    // Touch / coarse-pointer devices: skip parallax — iOS toolbar
-    // resize + rubber-banding make scroll-linked offsets jittery.
-    const canParallax =
-      window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    let ticking = false;
-
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled(y > 60);
-
-      if (!canParallax || !heroBgRef.current || ticking) return;
-
-      ticking = true;
-      requestAnimationFrame(() => {
-        if (heroBgRef.current) {
-          heroBgRef.current.style.transform = `translate3d(0, ${window.scrollY * 0.38}px, 0)`;
-        }
-        ticking = false;
-      });
+      setHeroParallax(y * 0.38);
     };
-
-    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -572,15 +553,13 @@ export function WhiskedByValePage() {
         style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}
       >
         <div
-          ref={heroBgRef}
           style={{
             position: 'absolute',
-            inset: '-12% 0',
+            inset: '0%',
             backgroundImage: 'url(/images/singlesmores.png)',
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            willChange: 'transform',
-            transform: 'translate3d(0, 0, 0)',
+            backgroundPosition: `center calc(50% + ${heroParallax}px)`,
+            willChange: 'background-position',
           }}
         />
         <div
