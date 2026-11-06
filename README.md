@@ -2,30 +2,6 @@
 
 Landing page for **Whisked By Vale**. Showcases the cookie menu, pricing, and Instagram ordering.
 
-## Features
-
-- Full-bleed hero with brand-forward typography
-- Cookie menu grid (11 flavors with product photos)
-- Pricing tiers: 3 / 6 / 12 cookies
-- Order CTA linking to [Instagram](https://www.instagram.com/whiskedbyvale/)
-- Scroll-reveal animations and desktop parallax
-- Responsive layout tuned for mobile
-
-## Getting Started
-
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-| Script | Description |
-| --- | --- |
-| `npm run dev` | Start the development server |
-| `npm run build` | Build for production |
-| `npm run start` | Serve the production build |
-| `npm run lint` | Run ESLint |
 
 ## Project Structure
 
